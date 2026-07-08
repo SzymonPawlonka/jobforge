@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package analyzer;
+option go_package = "github.com/sedittis/jobforge/services/analyzer-go/proto;analyzerpb";
+
+service FileAnalyzer {
+  rpc AnalyzeFile(FileRequest) returns (FileAnalysis);
+}
+
+message FileRequest {
+  string filename = 1;
+  bytes content = 2;
+}
+
+message FileAnalysis {
+  int64 size_bytes = 1;
+  int64 character_count = 2;
+  int64 word_count = 3;
+  int64 line_count = 4;
+  string sha256 = 5;
+}
