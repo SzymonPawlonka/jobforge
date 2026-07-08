@@ -1,0 +1,3 @@
+JobForge analizuje pliki tekstowe.
+Ten plik służy do demonstracji uploadu, gRPC i WebSocketów.
+Trzecia linia zawiera kilka słów.
