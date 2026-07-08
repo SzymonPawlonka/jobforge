@@ -266,7 +266,13 @@ https://api-production-b70d.up.railway.app/health
 
 Deployment wykonano na Railway. FastAPI, PostgreSQL i Go Analyzer dzialaja jako osobne uslugi. API jest dostepne publicznie przez HTTPS.
 
-## Swiadome ograniczenia
+The application is deployed on Railway and consists of:
+- FastAPI service
+- PostgreSQL database
+- Go gRPC analyzer service
+The public API uses HTTPS.
+
+## ograniczenia
 
 - brak frontendu;
 - maksymalnie jeden plik na zadanie;
