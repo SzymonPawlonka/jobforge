@@ -153,9 +153,8 @@ python -m pytest -q
 
 Ostatni wynik lokalny:
 
-```text
+
 10 passed, 1 warning in 1.75s
-```
 
 ### Go
 
@@ -166,9 +165,7 @@ go test ./...
 
 Ostatni wynik lokalny:
 
-```text
 ok github.com/sedittis/jobforge/services/analyzer-go/internal/analyzer
-```
 
 ## Test kontrolowanej awarii Go
 
@@ -205,7 +202,7 @@ Wyniki ostatniego testu lokalnego:
 
 - 10 uzytkownikow;
 - czas testu: 1 minuta;
-- 478 zadan HTTP;
+- 478 requestow HTTP
 - 0 bledow;
 - 8.09 RPS;
 - sredni czas odpowiedzi: 34 ms;
@@ -232,10 +229,6 @@ Szczegoly znajduja sie w `docs/performance.md`.
 - Go test: `ok`;
 - Locust: `478 requests`, `0 failures`.
 
-## Deployment
-
-Deployment nie zostal jeszcze wykonany.
-
 Po wdrozeniu trzeba uzupelnic:
 
 - URL publicznego API;
@@ -246,7 +239,11 @@ Po wdrozeniu trzeba uzupelnic:
 
 ## Repozytorium
 
-Repozytorium GitHub nie zostalo jeszcze opublikowane.
+Kod projektu znajduje sie w publicznym repozytorium:
+
+https://github.com/SzymonPawlonka/jobforge
+
+Repozytorium zawiera logiczna historie commitow oraz galaz `main`.
 
 Po utworzeniu repozytorium uzupelnij:
 
@@ -266,17 +263,4 @@ Po utworzeniu repozytorium uzupelnij:
 - brak Redis, Celery, Kafka i Kubernetes;
 - deployment nie jest jeszcze gotowy.
 
-## Bezpieczenstwo
-
-Nie wolno publikowac:
-
-- `.env`;
-- `JWT_SECRET`;
-- tokenow JWT;
-- hasel;
-- prawdziwego `DATABASE_URL`;
-- danych dostepowych do PostgreSQL;
-- sekretow chmurowych.
-
-Przed publikacja lub deploymentem nalezy wygenerowac nowy `JWT_SECRET`.
 
