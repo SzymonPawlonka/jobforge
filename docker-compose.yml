@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-jobforge}
+      POSTGRES_USER: ${POSTGRES_USER:-jobforge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jobforge}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-jobforge} -d ${POSTGRES_DB:-jobforge}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  analyzer:
+    build:
+      context: ./services/analyzer-go
+    environment:
+      PORT: "50051"
+      ANALYZER_MAX_FILE_BYTES: ${ANALYZER_MAX_FILE_BYTES:-1048576}
+    ports:
+      - "50051:50051"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck", "-addr=localhost:50051"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ./services/api-python
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-jobforge}:${POSTGRES_PASSWORD:-jobforge}@db:5432/${POSTGRES_DB:-jobforge}
+      GRPC_TARGET: analyzer:50051
+      GRPC_TLS: "false"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      analyzer:
+        condition: service_healthy
+    command: >-
+      sh -c "alembic upgrade head &&
+      python -m app.scripts.create_admin &&
+      uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  postgres_data:

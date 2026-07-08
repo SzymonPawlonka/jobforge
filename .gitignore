@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.sqlite3
+*.db
+.DS_Store
+.idea/
+.vscode/
+services/api-python/.pytest_cache/
+services/api-python/alembic/versions/__pycache__/
+locust-report*.html
