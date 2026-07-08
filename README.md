@@ -250,6 +250,22 @@ Po utworzeniu repozytorium uzupelnij:
 ```powershell
 ```
 
+## Deployment
+
+Publiczne API:
+
+https://api-production-b70d.up.railway.app
+
+Swagger:
+
+https://api-production-b70d.up.railway.app/docs
+
+Health:
+
+https://api-production-b70d.up.railway.app/health
+
+Deployment wykonano na Railway. FastAPI, PostgreSQL i Go Analyzer dzialaja jako osobne uslugi. API jest dostepne publicznie przez HTTPS.
+
 ## Swiadome ograniczenia
 
 - brak frontendu;
@@ -260,7 +276,4 @@ Po utworzeniu repozytorium uzupelnij:
 - brak refresh tokenow;
 - brak OAuth;
 - brak kolejki zadan;
-- brak Redis, Celery, Kafka i Kubernetes;
-- deployment nie jest jeszcze gotowy.
-
 
